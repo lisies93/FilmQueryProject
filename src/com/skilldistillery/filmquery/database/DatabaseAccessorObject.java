@@ -132,10 +132,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 
 			String sql = "SELECT film.id, film.title, film.release_year, film.rating,"
-					+ "film.description FROM film WHERE film.title LIKE ?";
+					+ "film.description FROM film WHERE film.title LIKE ? OR film.description LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, keyword);
-			
+			stmt.setString(2, keyword);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Film film = new Film(rs.getInt("id"), rs.getString("title"),rs.getString("description") ,
