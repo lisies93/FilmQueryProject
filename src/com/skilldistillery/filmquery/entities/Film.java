@@ -16,6 +16,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> actors;
+	private List<Film> films;
 	
 	public Film() {}
 	
@@ -34,6 +35,18 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
+	
+	
+	
+	public Film(int id, String title, String description, String releaseYear, String rating) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.rating = rating;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -108,6 +121,16 @@ public class Film {
 
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
+	}
+	
+	
+
+	public List<Film> getFilms() {
+		return films;
+	}
+
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 
 	@Override
@@ -186,29 +209,19 @@ public class Film {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film [id=");
+		builder.append("Film [id: ");
 		builder.append(id);
-		builder.append(", title=");
+		builder.append(", title: ");
 		builder.append(title);
-		builder.append(", description=");
+		builder.append(", description: ");
 		builder.append(description);
-		builder.append(", releaseYear=");
+		builder.append(", releaseYear: ");
 		builder.append(releaseYear);
-		builder.append(", languageId=");
+		builder.append(", languageId: ");
 		builder.append(languageId);
-		builder.append(", rentalDuration=");
-		builder.append(rentalDuration);
-		builder.append(", rentalRate=");
-		builder.append(rentalRate);
-		builder.append(", length=");
-		builder.append(length);
-		builder.append(", replacementCost=");
-		builder.append(replacementCost);
-		builder.append(", rating=");
+		builder.append(", rating: ");
 		builder.append(rating);
-		builder.append(", specialFeatures=");
-		builder.append(specialFeatures);
-		builder.append("]");
+		builder.append(" ]");
 		return builder.toString();
 	}
 
