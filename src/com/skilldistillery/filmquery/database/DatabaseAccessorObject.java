@@ -123,7 +123,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film findFilmByKeyword(String keyword) throws SQLException {
+	public List<Film> findFilmByKeyword(String keyword) throws SQLException {
 		Film film = new Film();
 		List<Film>  flist = new ArrayList<>();
 		
@@ -146,29 +146,17 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 						rs.getString("release_year"),rs.getString("rating"), rs.getString("language.name"));
 				 film.setActors(findActorsByFilmId(rs.getInt("film.id")));
 				 flist.add(film);
-				 System.out.println();
-				 System.out.println(film);
-				 for (Actor a: film.getActors()) {
-					 
-					 System.out.println(a);
-					
-				}
-				 System.out.println();
 			}
-			System.out.println(flist.size() + " results.");
-			if (flist.size() == 0) {
-				film = null;
-				return film;
-			}
-			System.out.println();
+
 			
 			rs.close();
 			stmt.close();
 			conn.close();
 
 
-		return film;
+		return flist;
 		
 	}
+
 
 }
