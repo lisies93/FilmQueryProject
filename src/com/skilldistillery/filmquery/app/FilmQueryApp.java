@@ -1,9 +1,8 @@
 package com.skilldistillery.filmquery.app;
 
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
@@ -68,8 +67,10 @@ public class FilmQueryApp {
 						if (film != null) {
 							System.out.println(film);
 							System.out.println();
+							showActors(film);
 							System.out.println();
-							System.out.println("Dou you want to look another film? (y/n)");
+							System.out.println();
+							System.out.println("Do you want to look another film? (y/n)");
 							String yesOrnot = input.nextLine();
 							if(yesOrnot.equalsIgnoreCase("y")) {
 							continue INNER;	
@@ -86,26 +87,20 @@ public class FilmQueryApp {
 					INNER: while (keepGoing) {
 						System.out.println("Please enter film keyword: ");
 						filmKeyword = input.nextLine();
-						List<Film> films = db.findActorByKeyword("%"+filmKeyword+"%");
-						if (films.size() != 0 ) {
+						Film singleFilm	= db.findFilmByKeyword("%"+filmKeyword+"%");
+						
+						if (singleFilm == null ) {
+							System.out.println("That keyword doesnt match any existing film please try again");
+							continue INNER;
 							
-							for (Film f : films) {
-								System.out.println(f);
-								System.out.println();
-							}
-							System.out.println(films.size() + " results.");
-							System.out.println();
-							System.out.println();
-							System.out.println("Dou you want to look another film? (y/n)");
+						} else {
+							System.out.println("Do you want to look another film? (y/n)");
 							String yesOrnot = input.nextLine();
 							if(yesOrnot.equalsIgnoreCase("y")) {
-							continue INNER;	
+								continue INNER;	
 							} else {
 								continue OUTER;
 							}
-						} else {
-							System.out.println("That keyword doesnt match any existing film please try again");
-							continue INNER;
 						}
 					}
 					break;

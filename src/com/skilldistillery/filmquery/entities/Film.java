@@ -15,6 +15,7 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private String language;
 	private List<Actor> actors;
 	private List<Film> films;
 	
@@ -34,17 +35,19 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+		
 	}
 	
 	
 	
-	public Film(int id, String title, String description, String releaseYear, String rating) {
+	public Film(int id, String title, String description, String releaseYear, String rating, String language ) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.rating = rating;
+		this.language = language;
 	}
 
 	public int getId() {
@@ -132,6 +135,16 @@ public class Film {
 	public void setFilms(List<Film> films) {
 		this.films = films;
 	}
+	
+	
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
 	@Override
 	public int hashCode() {
@@ -217,10 +230,10 @@ public class Film {
 		builder.append(description);
 		builder.append(", releaseYear: ");
 		builder.append(releaseYear);
-		builder.append(", languageId: ");
-		builder.append(languageId);
 		builder.append(", rating: ");
 		builder.append(rating);
+		builder.append(", language: ");
+		builder.append(language);
 		builder.append(" ]");
 		return builder.toString();
 	}
